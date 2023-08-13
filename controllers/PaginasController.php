@@ -49,7 +49,7 @@ class PaginasController{
 
         isAuth();
 
-        $router->render('inicio/index', [
+        $router->render('Inicio/index', [
             'nombre' => $_SESSION['nombre'],
             'id'=> $_SESSION['id']
         ]);
