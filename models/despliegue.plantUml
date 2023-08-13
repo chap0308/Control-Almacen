@@ -1,0 +1,32 @@
+@startuml hardware
+
+skinparam backgroundColor #EEEBDC
+
+node Cliente{
+
+    component CSS
+    component Html
+    component JavaScript
+    component SASS
+    
+    CSS-->SASS: framework
+}
+
+node servidor{
+    component Mysql
+    component PHP
+    component Apache
+    component Composer
+    component Node.js
+
+    PHP-->Composer: libreria
+}
+
+
+
+servidor-->Cliente
+
+
+
+
+@enduml

@@ -1,0 +1,61 @@
+@use 'variables' as v;
+
+/** Media Queries **/
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+
+
+@mixin boton ($radius , $padding) {
+    border-radius: $radius;
+    padding: 10px $padding;
+    background-color: #0098C0;
+    color: #FFFFFF;
+    border: #0098C0 3px solid;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 200ms ease-in-out;
+}
+
+@mixin boton-hover ($radius , $padding, $background, $margin) {
+    border-radius: $radius;
+    padding: 10px $padding;
+    background-color: $background;
+    color: #FFFFFF;
+    border: #0098C0 3px solid;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: $margin;
+    box-shadow: 0px 12px 14px -5px #0098C0;
+-moz-box-shadow: 0px 12px 14px -5px #0098C0;
+box-shadow: 0px 12px 14px -5px #0098C0;
+    
+}
+
+@mixin caja () {
+    width: 32%;
+    margin-top: 24px;
+    padding: 19px 13px;
+    border: 1px darkgray solid;
+    box-shadow: 8px 10px 18px 3px rgba(184,184,184,1);
+-moz-box-shadow: 8px 10px 18px 3px rgba(184,184,184,1);
+box-shadow: 8px 10px 18px 3px rgba(184,184,184,1);
+}
+
+@mixin grid($columnas, $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+    grid-template-columns: repeat($columnas, 1fr);
+}

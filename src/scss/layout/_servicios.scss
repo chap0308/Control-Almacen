@@ -1,0 +1,57 @@
+@use 'componentes/variables1' as v;
+@use 'componentes/mixins1' as m;
+
+.listado-servicios {
+    display: grid;
+    gap: 2rem;
+    @include m.tablet {
+        @include m.grid(2, 2rem);
+    }
+
+    .servicio {
+        background-color: v.$blanco;
+        padding: 3rem;
+        border-radius: 1rem;
+        transition-property: transform;
+        transition-duration: 300ms;
+        text-align: center;
+
+        &.disabled {
+            opacity: 0.5; /* Reduce la opacidad para indicar que está deshabilitado */
+            cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+            pointer-events: none; /* Deshabilita eventos de puntero para evitar interacciones */
+        }
+
+        &.seleccionado {
+            background-color: rgb(92, 43, 240);
+            p {
+                color: rgb(219, 126, 228);
+            }
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        p {
+            color: rgb(48, 75, 82);
+            margin: 0 0 calc( v.$separacion / 4) 0;
+        }
+        .precio-servicio {
+            color: rgb(52, 119, 52);
+            font-weight: v.$bold;
+            font-size: 3rem;
+            margin: 0;
+        }
+        .green {
+            background-color: #3fd13f
+        }
+        .red {
+            background-color: #f96937;
+        
+        }
+        .yellow {
+            background-color: #c5cb46;
+        }
+    }
+}

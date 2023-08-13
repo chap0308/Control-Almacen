@@ -1,0 +1,41 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as mx;
+.contenedor-inicio {
+    padding: 0px 90px;
+    h1 {
+        color: #b71540;
+        margin-top: 32px;
+    }
+    h3 {
+        color: #fad390;
+    }
+    .panel-cajas {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        justify-content: space-between;
+        .caja {
+            text-align: center;
+            @include mx.caja();
+            .title {
+                p {
+                    font-weight: bold;
+                }
+            }
+            .boton {
+
+                button {
+                    @include mx.boton (4px, 95px);
+                    a {
+                        color: white;
+                    }
+                    &:hover {
+                        @include mx.boton-hover (4px, 95px, #0098C0, 0px);
+                    }
+                }
+            }
+        }
+    }
+
+}

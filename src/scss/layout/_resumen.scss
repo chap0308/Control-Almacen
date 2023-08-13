@@ -1,0 +1,36 @@
+@use 'componentes/variables1' as v;
+
+.contenido-resumen {
+    
+    p {
+        margin-bottom: 1rem;
+    }
+
+    span {
+        color: v.$azul;
+        font-weight: v.$bold;
+        font-size: 2.4rem;
+        
+    }
+    
+}
+.contenedor-servicio {
+    padding: 3rem 0;
+    border-bottom: 1px solid v.$gris;
+
+    &:last-of-type {
+        margin-bottom: v.$separacion;
+    }
+}
+.uno{
+    padding-left: 15rem;
+    padding-right: 15rem;
+    padding-top: 5rem;
+}
+.form{
+    font-size: 2rem;
+    margin: 3rem;
+}
+.bus{
+    font-size: 2rem;
+}

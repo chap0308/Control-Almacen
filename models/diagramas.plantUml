@@ -1,0 +1,240 @@
+@startuml clases
+
+Producto  --> Categoria: pertenece a
+Producto "1" o-- "0..*" DetallePedidos
+DetallePedidos "0..*" o-- "1" Pedidos
+Pedidos "0..*" o-- "1" Clientes
+Producto "1" o-- "0..*" DetalleSolicitud
+DetalleSolicitud "0..*" o-- "1" SolicitudesCompra
+SolicitudesCompra "0..*" o-- "1" Proveedor
+DetallePedidos "1" -- "1" FacturaPedidos
+DetalleSolicitud "1" -- "1" FacturaSolicitud
+Admin  --> Usuarios: valida
+InventarioPrincipal "1" o-- "0..*" Producto: contiene
+
+class ActiveRecord{
+    - protected static $db;
+    - protected static $tabla = '';
+    - protected static $columnasDB = [];
+    - protected static $alertas = [];
+
+    + public static function setDB($database);
+    + public static function setAlerta($tipo, $mensaje);
+    + public static function getAlertas();
+    + public function validar();
+    + public static function consultarSQL($query);
+    + protected static function crearObjeto($registro);
+    + public function atributos();
+    + public function sanitizarAtributos();
+    + public function sincronizar($args=[]);
+    + public function guardar();
+    + public static function all();
+    + public static function find($id);
+    + public static function where($columna, $valor);
+    + public static function buscar($seleccionado,$buscar);
+    + public static function asc();
+    + public static function ascDescripcion();
+    + public static function desc();
+    + public static function descDescripcion();
+    + public static function buscarCategoria($categoria);
+    + public static function get($limite);
+    + public function crear();
+    + public function actualizar();
+    + public function eliminar();
+    + public function setImagen($imagen);
+    + public function borrarImagen();
+    + public static function SQL($query);
+}
+
+class Producto extends ActiveRecord{
+    - public $id;
+    - public $descripcion;
+    - public $categoria_id;
+    - public $stock;
+    - public $imagen_producto;
+    - public $precio_costo;
+    - public $ganancia;
+    - public $precio_unitarioVenta;
+    - public $fecha_inicial;
+    - protected static $tabla = 'productos';
+    - protected static $columnasDB = ['id','descripcion', 'categoria_id','stock', 'imagen_producto','precio_costo','ganancia','precio_unitarioVenta','fecha_inicial'];
+
+    + public function __construct($args=[]);
+    + public function validar();
+}
+
+class Admin extends ActiveRecord{
+    
+    - public $id;
+    - public $email;
+    - public $password;
+    - protected static $tabla = 'usuarios';
+    - protected static $columnasDB = ['id', 'email', 'password'];
+
+    + public function __construct($id,$email,$password);
+    + public function validar();
+    + public function existeUsuario();
+    + public function comprobarPassword($resultado);
+    + public function autenticar();
+
+}
+
+class Categoria extends ActiveRecord{
+
+    - public $id;
+    - public $nombre;
+    - protected static $tabla = 'categoria';
+    - protected static $columnasDB = ['id','nombre'];
+
+    + public function __construct($id,$nombre);
+
+}
+
+class Clientes extends ActiveRecord{
+
+    - public $id;
+    - public $nombre;
+    - public $email;
+    - public $telefono;
+    - protected static $tabla = 'clientes';
+    - protected static $columnasDB = ['id','nombre', 'email','telefono'];
+    
+
+    + public function __construct($args=[])
+    + public function validar();
+}
+
+class DetallePedidos extends ActiveRecord {
+    - public $id;
+    - public $productos_id;
+    - public $pedidos_id;
+    - public $cantidad_salida;
+    - public $precio_unitario;
+    - public $precio_venta;
+    - protected static $tabla = 'detalle_pedidos';
+    - protected static $columnasDB = ['id','productos_id', 'pedidos_id', 'cantidad_salida', 'precio_unitario', 'precio_venta'];
+    
+
+    + public function __construct($args = []);
+}
+
+class DetalleSolicitud extends ActiveRecord {
+    - public $id;
+    - public $productos_id;
+    - public $solicitudes_compra_id;
+    - public $cantidad_entrada;
+    - public $precio_unitario;
+    - public $precio_compra;
+    - protected static $tabla = 'detalle_solicitud';
+    - protected static $columnasDB = ['id','productos_id', 'solicitudes_compra_id', 'cantidad_entrada', 'precio_unitario', 'precio_compra'];
+
+    + public function __construct($args = []);
+}
+
+class FacturaPedidos extends ActiveRecord {
+    - public $id;
+    - public $clientes;
+    - public $email;
+    - public $telefono;
+    - public $producto;
+    - public $cantidad_salida;
+    - public $precio_unitario;
+    - public $precio_venta;
+    - public $precioTotal;
+    - protected static $tabla = 'facturaPedido';
+    - protected static $columnasDB = ['id', 'clientes', 'email', 'telefono', 'producto', 'cantidad_salida', 'precio_unitario', 'precio_venta','precioTotal'];
+
+    + public function __construct();
+}
+
+class FacturaSolicitud extends ActiveRecord {
+    - public $id;
+    - public $proveedor;
+    - public $email;
+    - public $telefono;
+    - public $producto;
+    - public $cantidad_entrada;
+    - public $precio_unitario;
+    - public $precio_compra;
+    - public $precioTotal;
+    - protected static $tabla = 'facturaSolicitud';
+    - protected static $columnasDB = ['id', 'proveedor', 'email', 'telefono', 'producto', 'cantidad_entrada', 'precio_unitario', 'precio_compra','precioTotal'];
+
+    + public function __construct();
+}
+
+class InventarioPrincipal extends ActiveRecord {
+    - public $idProducto;
+    - public $descripcion;
+    - public $categoria;
+    - public $TotalEntrada;
+    - public $TotalSalida;
+    - public $StockActual;
+    - public $Egresos;
+    - public $Ingresos;
+    - public $stock;
+    - protected static $tabla = 'inventario';
+    - protected static $columnasDB = ['idProducto', 'descripcion', 'categoria', 'TotalEntrada', 'TotalSalida', 'StockActual', 'Egresos','Ingresos','stock'];    
+
+    + public function __construct();
+}
+
+class Pedidos extends ActiveRecord {
+    - public $id;
+    - public $clientes_id;
+    - public $fecha_pedido;
+    - public $precioTotal;
+    - protected static $tabla = 'pedidos';
+    - protected static $columnasDB = ['id', 'clientes_id', 'fecha_pedido', 'precioTotal'];
+
+    + public function __construct($args = []);
+}
+
+
+class Proveedor extends ActiveRecord{
+
+    - public $id;
+    - public $nombre;
+    - public $email;
+    - public $telefono;
+    - protected static $tabla = 'proveedor';
+    - protected static $columnasDB = ['id','nombre', 'email','telefono'];
+
+    + public function __construct($args=[]);
+    + public function validar();
+    
+}
+
+class SolicitudesCompra extends ActiveRecord {
+
+    - public $id;
+    - public $proveedor_id;
+    - public $fecha_solicitud;
+    - public $precioTotal;
+    - protected static $tabla = 'solicitudes_compra';
+    - protected static $columnasDB = ['id', 'proveedor_id', 'fecha_solicitud', 'precioTotal'];
+
+    public function __construct($args = []);
+}
+
+
+class Usuarios extends ActiveRecord{
+
+    - public $id;
+    - public $email;
+    - public $password;
+    - public $nombre;
+    - public $apellido;
+    - public $rol;
+    - public $telefono;
+    - protected static $tabla = 'usuarios';
+    - protected static $columnasDB = ['id','email','password','nombre','apellido','rol','telefono'];
+
+    + public function __construct($args=[]);
+    + public function validar();
+    + public function validarLogin();
+    + public function comprobarPassword($password);
+
+}
+
+@enduml

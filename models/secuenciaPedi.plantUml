@@ -1,0 +1,56 @@
+@startuml Pedidos
+skinparam backgroundColor #EEEBDC
+
+actor Trabajador #white
+boundary ViewPedidos #red
+control APICTRL #Yellow
+entity Producto #blue
+entity Clientes #blue
+entity Pedidos #blue
+entity DetallePedidos #blue
+
+
+
+Trabajador -> ViewPedidos : Ingresa a
+activate ViewPedidos
+ViewPedidos -> APICTRL : mostrarProductosyClientes()
+deactivate ViewPedidos
+
+APICTRL -> Producto : obtenerProductos()
+activate Producto
+return return
+APICTRL -> Clientes : obtenerClientes()
+activate Clientes
+return return
+APICTRL -> APICTRL : MostrarProductosyClientes()
+Trabajador -> APICTRL : Ingresa productos, fecha y cliente
+APICTRL -> APICTRL : mostrarResumen()
+Trabajador -> APICTRL : Ingresa cantidad por producto
+APICTRL -> APICTRL : validarDatos()
+Trabajador -> APICTRL : Realiza el Pedido
+APICTRL -> Clientes : obtenerIdCliente()
+activate Clientes
+return return idCliente
+APICTRL -> Producto : calcularNuevoStock(stock, cant)
+activate Producto
+return return nuevoStock
+APICTRL -> Producto : calcularPrecioVenta(precioUnitarioVenta, cant)
+activate Producto
+return return precioVenta
+APICTRL -> Producto : calcularPrecioTotal(precioVenta=[])
+activate Producto
+return return totalVenta
+APICTRL -> Pedidos : guardarPedido(idcliente, fecha_salida, totalVenta)
+activate Pedidos
+return return idPedido
+APICTRL -> DetallePedidos : guardarDetallePedido(idproductos=[], idPedido, cant=[], precioVenta=[])
+activate DetallePedidos
+return return
+APICTRL -> Producto : actualizarStock(stock)
+activate Producto
+return return
+APICTRL -> APICTRL : mostrarMensaje()
+APICTRL --> Trabajador : Muestra el mensaje de éxito
+
+@enduml
+

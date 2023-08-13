@@ -1,0 +1,1 @@
+function iniciarApp(){buscarPorCategoria()}function buscarPorCategoria(){document.querySelector("#categoria1").addEventListener("input",(function(n){const t=n.target.value;window.location="?categoria1="+t}))}document.addEventListener("DOMContentLoaded",(function(){iniciarApp()}));

@@ -1,0 +1,1 @@
+let fechaInput=document.querySelector("#fecha");function buscarPorFecha(){fechaInput.addEventListener("input",(function(e){let t=e.target.value;window.location="?fecha="+t}))}document.addEventListener("DOMContentLoaded",(function(){buscarPorFecha()}));

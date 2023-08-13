@@ -1,0 +1,86 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as mx;
+
+/* ENCABEZADO */
+$color: (
+    "primary" : #A4CB2E,
+    "secundary" : #0098C0 ,
+    "white" : #FFFFFF ,
+);
+
+.encabezado {
+    width: 100%;
+    background-color: #b71540;
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    padding: 0 90px;
+    align-items: center;
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        h2 {
+            color: map-get($color , "white" );
+            font-weight: bold;
+            margin-left: 16px;
+            cursor: pointer;
+        }
+    }
+    
+    .navigator {
+        ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            li {
+                padding-right: 30px;
+                a {
+                    text-decoration: none;
+                    color: map-get($color , "white" );
+                    transition: all 500ms ease-in-out;
+                    &:hover {
+                        /* color: map-get($color, "secundary" ); */
+                        text-decoration: underline 2px;
+                    }
+                }
+            }
+            button {
+                height: 90px;
+                @include mx.boton(4px, 11px);
+                &:hover {
+                    @include mx.boton-hover(4px, 11px, #0098C0, 5px);
+                }
+                a {
+                display: flex;
+                align-items: center;
+                    p {
+                        font-size: 14px;
+                    }
+                    img {
+                        width: 20px;
+                        margin-left: 8px;
+                    }
+                }
+            }
+            /*
+            button {
+                height: 90px;
+                @include mx.boton(4px, 11px);
+                display: flex;
+                align-items: center;
+                &:hover {
+                    @include mx.boton-hover(4px, 11px, #0098C0, 5px);
+                }
+                p {
+                    font-size: 14px;
+                }
+                img {
+                    width: 20px;
+                    margin-left: 8px;
+                }
+            }
+            */
+        }
+    }
+}

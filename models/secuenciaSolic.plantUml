@@ -1,0 +1,63 @@
+@startuml Solicitud
+
+skinparam backgroundColor #EEEBDC
+
+actor Trabajador #white
+boundary ViewSolicitudes #red
+control CTRL #Yellow
+entity Producto #blue
+entity Proveedor #blue
+entity SolicitudesCompra #blue
+entity DetalleSolicitud #blue
+
+
+
+Trabajador -> ViewSolicitudes : Ingresa a
+activate ViewSolicitudes
+ViewSolicitudes -> CTRL : mostrarProductosyProveedores()
+deactivate ViewSolicitudes
+
+CTRL -> Producto : obtenerProductos()
+activate Producto
+return return
+CTRL -> Proveedor : obtenerProveedores()
+activate Proveedor
+return return
+CTRL -> CTRL : MostrarProductosyProveedores()
+Trabajador -> CTRL : Ingresa productos, fecha y proveedor
+CTRL -> CTRL : mostrarResumen()
+Trabajador -> CTRL : Ingresa precio, cantidad y ganancia por producto
+CTRL -> CTRL : validarDatos()
+Trabajador -> CTRL : Realiza la Solicitud de compra
+CTRL -> Proveedor : obtenerIdProveedor()
+activate Proveedor
+return return idProveedor
+CTRL -> Producto : calcularPrecioPonderado(precio_costo, nuevo_costo)
+activate Producto
+return return precioPonderado
+CTRL -> Producto : calcularPrecioUnitarioVenta(precioPonderado, ganancia)
+activate Producto
+return return precioUnitarioVenta
+CTRL -> Producto : calcularNuevoStock(stock, cant)
+activate Producto
+return return nuevoStock
+CTRL -> Producto : calcularPrecioCompra(precioCosto, cant)
+activate Producto
+return return precioCompra
+CTRL -> Producto : calcularPrecioTotal(precioCompra=[])
+activate Producto
+return return totalCompra
+CTRL -> SolicitudesCompra : guardarSolicitud(idproveedor, fecha_entrada, totalCompra)
+activate SolicitudesCompra
+return return idSolicitud
+CTRL -> DetalleSolicitud : guardarDetalleSolicitud(idproductos=[], idSolicitud, cant=[], precioCompra=[])
+activate DetalleSolicitud
+return return
+CTRL -> Producto : actualizarProd(nuevoStock,precioPonderado,precioUnitarioVenta)
+activate Producto
+return return
+CTRL -> CTRL : mostrarMensaje()
+CTRL --> Trabajador : Muestra el mensaje de éxito
+
+@enduml
+

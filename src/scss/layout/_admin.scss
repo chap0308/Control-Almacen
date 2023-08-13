@@ -1,0 +1,45 @@
+@use 'componentes/variables1' as v;
+
+.citas {
+    list-style: none;
+    display: flex;
+    padding: 2rem 15rem;
+    justify-content: space-evenly;
+
+
+    li {
+        padding: 1rem;
+        border-top: 1px solid v.$blanco;//para la raya de arriba
+
+        p {
+            font-weight: v.$bold;
+            color: v.$azul;
+            
+        }
+
+        span,
+        .servicio {
+            font-weight: v.$regular;
+            color: v.$blanco;
+        }
+        .product{
+            color: v.$rojo;
+        }
+        .total{
+            color: v.$verde;
+        }
+
+    }
+}
+
+.servicios {
+    @extend .citas;
+
+    .acciones {
+        margin: 0;
+    }
+    .boton,
+    .boton-eliminar {
+        margin: 0;
+    }
+}
