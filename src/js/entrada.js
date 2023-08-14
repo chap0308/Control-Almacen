@@ -130,6 +130,7 @@ function quitar(){
 async function consultarAPI() {//async y await van siempre juntos, y el await hace que espere a que se termine de ejecutar una funcion
 
     try {
+        //! const url = `${location.origin}/api/productos`;
         const url = '/api/productos';//esta es la url que se va a consumir, la url que tiene el api
         const resultado = await fetch(url);//funcion que permite consumir este los datos de la url(en este caso son de la tabla servicios)
         
@@ -802,6 +803,7 @@ async function guardarSolicitud(preCN,cantN,ganA){
 
 
     try {
+        //! const url = `${location.origin}/api/solicitudes`;
         const url = '/api/solicitudes'
 
         const respuesta=await fetch(url,{
