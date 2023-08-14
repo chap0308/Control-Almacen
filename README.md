@@ -12,7 +12,6 @@ $ cd public
 $ php -S localhost:3000
 
 ```
-Finalmente entrar a http://localhost:3000
 
 2. Otra forma: Usar la terminal integrada de VSCode o las terminales de sus sistemas operativos( Windows: PowerShell, Mac: Shell)
 
