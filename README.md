@@ -1,3 +1,16 @@
+#ENV:
+- DB_HOST = localhost
+- DB_USER = root
+- DB_PASS = root
+- DB_NAME = bd_almacen3
+
+- EMAIL_HOST = sandbox.smtp.mailtrap.io
+- EMAIL_PORT = 2525
+- EMIAL_USER = 
+- EMAIL_PASS = 
+
+- APP_URL = http://localhost:3000
+
 # Control_Almacen
 ## Comandos para levantar el proyecto:
 
