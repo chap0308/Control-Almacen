@@ -54,6 +54,13 @@ $ npx gulp
 ## Usar `${location.origin}/api/productos` para desarrollo
 ## Usar '/api/productos' para produccion (para el deployment)
 
+# RECUERDA TENER COMPOSER INSTALADO PARA LAS LIBRERIAS Y PARA COLOCAR UNA NUEVA LIBRERIA, SOLO DEBEMOS IR A composer.json y colocar la libreria:
+```json
+    "require": {
+        "phpmailer/phpmailer": "^6.8",
+        "vlucas/phpdotenv": "^5.5"
+    }
+```
 # RECORDAR: para cada nuevo autload que escribas usar: composer update
 
 # Usuario admin:
@@ -65,3 +72,5 @@ $ npx gulp
 
 - user: pepe123@correo.com
 - password: 123456
+
+
